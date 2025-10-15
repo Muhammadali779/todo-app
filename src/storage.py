@@ -54,3 +54,10 @@ def get_tasks():
 
     return tasks
 
+def save_update_data(data):
+    with open(DATABASE_URL, "w") as file:
+        json.dump(data, file, indent=4)
+
+def remove_data(data):
+    with open(DATABASE_URL, "w") as file:
+        json.dump(data, file, indent=4)

@@ -6,6 +6,10 @@ from rich.table import Table
 from .storage import (
     create_task,
     get_tasks,
+    save_update_data,
+    read_database,
+    remove_data,
+    
 )
 
 
@@ -58,4 +62,46 @@ def show_tasks():
     print(f"Created Date: {created_date}")
     
     print()
-    
+
+def update_task():
+    data = read_database()
+
+    if not data:
+        return "❌ Hech qanday task mavjud emas"
+
+    selected_id = int(input("Qaysi ID dagi taskni yangilaysiz: "))
+
+    for task in data:
+        if selected_id == task['id']:
+            new_name = input("Task name: ").strip().capitalize()
+            new_description = input("Description: ").strip().capitalize()
+            new_category = input("Category: ").strip().title()
+            new_due_date = input("Date (example: 11/11/2026) ")
+
+            task['name'] = new_name
+            task['description'] = new_description
+            task['category'] = new_category
+            task['due_date'] = new_due_date
+
+            save_update_data(data) 
+            return "✅ Task yangilandi"
+
+    return "❌ Bunday IDdagi task topilmadi"
+
+
+def delete_task():
+    data = read_database()
+
+    if not data:
+        return "❌ Hech qanday task mavjud emas"
+        
+    delete_id = int(input("Qaysi ID dagi taskni uchirmoqchisiz: "))
+    for task in data:
+        if delete_id == task['id']:
+            data.remove(task)
+
+            remove_data(data)
+            return "✅ Task o`chirildi"
+        
+    return "❌ Bunday IDdagi task topilmadi"
+

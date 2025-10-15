@@ -1,6 +1,9 @@
 from .commands import (
     add_task,
     show_tasks,
+    update_task,
+    delete_task,
+
 )
 
 
@@ -19,4 +22,8 @@ def main():
             add_task()
         elif choice == "2":
             show_tasks()
+        elif choice == "3":
+            update_task()
+        elif choice == "4":
+            delete_task()
         

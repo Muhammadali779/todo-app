@@ -61,3 +61,7 @@ def save_update_data(data):
 def remove_data(data):
     with open(DATABASE_URL, "w") as file:
         json.dump(data, file, indent=4)
+
+def save_mark_completed(data):
+    with open(DATABASE_URL, "w") as file:
+        json.dump(data, file, indent=4)

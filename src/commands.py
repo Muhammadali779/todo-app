@@ -9,6 +9,8 @@ from .storage import (
     save_update_data,
     read_database,
     remove_data,
+    save_mark_completed,
+    
     
 )
 
@@ -102,6 +104,23 @@ def delete_task():
 
             remove_data(data)
             return "✅ Task o`chirildi"
+        
+    return "❌ Bunday IDdagi task topilmadi"
+
+def mark_completed():
+    data = read_database()
+    
+    if not data:
+        return "❌ Hech qanday task mavjud emas"
+    
+    completed = int(input("Qaysi ID dagi taskni bajarib bo`ldingiz: "))
+
+    for task in data:
+        if completed == task['id']:
+            task['status'] = True
+            save_mark_completed(data)
+
+            return "✅ Task bajarildi"
         
     return "❌ Bunday IDdagi task topilmadi"
 

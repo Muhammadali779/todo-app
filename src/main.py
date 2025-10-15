@@ -1,8 +1,12 @@
+import sys
+
 from .commands import (
     add_task,
     show_tasks,
     update_task,
     delete_task,
+    mark_completed,
+    
 
 )
 
@@ -26,4 +30,10 @@ def main():
             update_task()
         elif choice == "4":
             delete_task()
+        elif choice == "5":
+            mark_completed()
+        elif choice == "6":
+           sys.exit()
+        else:
+            print("Bunday menu mavjud emas ❌")
         
